@@ -1,0 +1,11 @@
+.catalog-row {
+  transition: background-color 0.2s ease;
+}
+
+.catalog-row:hover {
+  background-color: #fcfdfc;
+}
+
+.fs-7 {
+  font-size: 0.85rem;
+}

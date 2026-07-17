@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg py-2" style="background-color: #111213;">
+  <div class="container-fluid px-4">
+
+    <a class="navbar-brand m-0 fw-medium" href="#" style="color: #ffffff; font-size: 0.9rem; letter-spacing: -0.2px;">Home</a>
+
+
+    <button class="navbar-toggler border-0 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="filter: invert(1); font-size: 0.8rem;">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-4 gap-3">
+        <li class="nav-item">
+          <a class="nav-link active p-0 fw-medium" aria-current="page" [routerLink]="['/']" style="color: #ffffff !important; font-size: 0.85rem;">
+            {{title}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link p-0 fw-medium" [routerLink]="['/about']" style="color: #6c7278; font-size: 0.85rem; transition: color 0.15s ease;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#6c7278'">
+            Contacto
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
