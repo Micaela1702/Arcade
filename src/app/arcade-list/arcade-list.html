@@ -8,49 +8,50 @@
 </div>
 
 <div class="catalog-container border rounded-3 overflow-hidden shadow-sm bg-white">
-<table class="table align-middle text-center mb-0">
-  <thead style="background-color: #f0f2f5; color: #495057; font-size: 0.75rem; letter-spacing: 0.5px;" class="text-uppercase fw-bold">
-  <tr>
-    <th>Imagen</th>
-    <th>Nombre</th>
-    <th>Género</th>
-    <th>Precio</th>
-    <th>Estado</th>
-    <th>Acción</th>
-  </tr>
-  </thead>
-  <tbody>
-@for(videojuego of juego; track videojuego.name){
-<tr>
-  <td>
-    <img [src]="videojuego.image" [alt]="videojuego.name" style="width: 50px; height: auto; border-radius: 4px;" />
-  </td>
-  <td class="fw-bold">{{videojuego.name}}</td>
-  <td>{{videojuego.type}}</td>
-  <td>{{videojuego.price| currency:'USD':true:'1.2-2'}}</td>
-  <td>
-  @if (videojuego.stock > 0) {
-  <span class="text-success">{{ videojuego.stock }} disponibles</span>
-  } @else {
-  <span class="stock-badge">Sin stock</span>
-  }
-  </td>
-  <td>
-    @if (videojuego.stock) {
-    <div class="d-flex align-items-center justify-content-center">
-    <app-input-integer [(quantity)]="videojuego.quantity" [max]="videojuego.stock" (maxReached)="maxReached($event)"></app-input-integer>
-    <button class="btn btn-success btn-sm ms-2" (click)="addToCart(videojuego)">
-      <i class="bi bi-cart-plus"></i> Comprar
-    </button>
-    </div>
-}
-</td>
-</tr>
-} @empty {
-<tr>
-  <td colspan="6">No hay juegos para mostrar en este momento.</td>
-</tr>
-}
-</tbody>
-</table>
+  <table class="table align-middle text-center mb-0">
+    <thead style="background-color: #f0f2f5; color: #495057; font-size: 0.75rem; letter-spacing: 0.5px;" class="text-uppercase fw-bold">
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Género</th>
+      <th>Precio</th>
+      <th>Estado</th>
+      <th>Acción</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @for(videojuego of juego(); track videojuego.name){
+    <tr>
+      <td>
+        <img [src]="videojuego.image" [alt]="videojuego.name" style="width: 50px; height: auto; border-radius: 4px;" />
+      </td>
+      <td class="fw-bold">{{videojuego.name}}</td>
+      <td>{{videojuego.type}}</td>
+      <td>{{videojuego.price | currency:'USD':true:'1.2-2'}}</td>
+      <td>
+        @if (videojuego.stock > 0) {
+        <span class="text-success">{{ videojuego.stock }} disponibles</span>
+        } @else {
+        <span class="stock-badge">Sin stock</span>
+        }
+      </td>
+      <td>
+        @if (videojuego.stock) {
+        <div class="d-flex align-items-center justify-content-center">
+          <app-input-integer [(quantity)]="videojuego.quantity" [max]="videojuego.stock" (maxReached)="maxReached($event)"></app-input-integer>
+          <button class="btn btn-success btn-sm ms-2" (click)="addToCart(videojuego)">
+            <i class="bi bi-cart-plus"></i> Comprar
+          </button>
+        </div>
+        }
+      </td>
+    </tr>
+    } @empty {
+    <tr>
+      <td colspan="6" class="text-muted py-4">No hay juegos para mostrar en este momento.</td>
+    </tr>
+    }
+    </tbody>
+  </table>
 </div>

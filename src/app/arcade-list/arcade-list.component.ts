@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common'; // chequear
 import { i_arcade } from './i-arcade';
 import { FormsModule } from '@angular/forms';
@@ -13,11 +13,15 @@ import {InputIntegerComponent} from '../input-integer/input-integer';
   styleUrl: './arcade.css',
 })
 export class Juego implements OnInit {
-  juego : i_arcade[] = [];
-  constructor (protected arcadeDataService: arcadeDataService, protected router: Router, protected CarritoDataService: CarritoDataService){}
+  juego = signal<i_arcade[]>([]);
+  constructor (protected arcadeDataService: arcadeDataService,
+  protected router: Router,
+  protected CarritoDataService: CarritoDataService){}
+
   ngOnInit(): void {
-     this.arcadeDataService.getAll().subscribe({next: (juego) => {this.juego = juego; console.log(juego);
-     this.CarritoDataService.setJuegoListReference(this.juego);
+     this.arcadeDataService.getAll().subscribe({next: (datosApi) => {console.log('Datos que llegaron:', datosApi);
+     this.juego.set(datosApi);
+     this.CarritoDataService.setJuegoListReference(this.juego());
            },
            error: (err) => {
              console.error('Error al cargar los juegos', err);
