@@ -6,8 +6,6 @@
       <span class="item-name fw-bold">{{ juego.name }}</span>
       <div class="d-flex align-items-center gap-3">
         <span class="badge rounded-pill item-badge">{{ juego.quantity }}</span>
-
-        <!-- Botón con emoji -->
         <button
           class="btn p-0 border-0 btn-remove d-flex align-items-center"
           (click)="removeOneFromCart(juego.name)"

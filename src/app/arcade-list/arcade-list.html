@@ -40,7 +40,6 @@
       </td>
       <td>
         @if (videojuego.stock) {
-        <!-- Contenedor alineado al centro horizontal con un gap (espaciado) de 2 -->
         <div class="d-flex align-items-center justify-content-center gap-2">
           <app-input-integer [(quantity)]="videojuego.quantity" [max]="videojuego.stock" (maxReached)="maxReached($event)"></app-input-integer>
           <button class="arcade-btn-comprar btn-sm" (click)="addToCart(videojuego)">

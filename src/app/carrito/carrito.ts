@@ -15,8 +15,8 @@ export class Carrito {
   constructor (protected CarritoDataService: CarritoDataService){
   this.cartList$ = this.CarritoDataService.cartList.asObservable();
   }
- /**
-   * Elimina una unidad de un juego del carrito y actualiza el stock.
+  /*
+    Elimina una unidad de un juego del carrito y actualiza el stock.
    */
   removeOneFromCart(juegoName: string) {
     const removed = this.CarritoDataService.removeQuantityFromCart(juegoName, 1);

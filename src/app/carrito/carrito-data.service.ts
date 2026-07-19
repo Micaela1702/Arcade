@@ -12,16 +12,14 @@ export class CarritoDataService {
   cartList: BehaviorSubject<i_arcade[]>;
 
   constructor() {
-    // 1. Al iniciar el servicio, intentamos recuperar lo guardado en el navegador
+
     const savedCart = localStorage.getItem('carrito_arcade');
     if (savedCart) {
       this._cartList = JSON.parse(savedCart);
     }
-    // Inicializamos el BehaviorSubject con los datos recuperados (vacíos o con juegos)
     this.cartList = new BehaviorSubject<i_arcade[]>(this._cartList);
   }
 
-  // 2. Función auxiliar para no repetir código al guardar
   private saveCart() {
     localStorage.setItem('carrito_arcade', JSON.stringify(this._cartList));
   }
@@ -47,7 +45,7 @@ export class CarritoDataService {
 
     this.cartList.next(this._cartList);
 
-    // 3. Guardamos los cambios en el almacenamiento local
+    // Guardamos los cambios en el almacenamiento local
     this.saveCart();
   }
 
@@ -65,7 +63,7 @@ export class CarritoDataService {
 
     this.cartList.next(this._cartList);
 
-    // 4. Guardamos los cambios también al remover elementos
+    // Guardamos los cambios también al remover elementos
     this.saveCart();
 
     return quantityToRemove;
@@ -74,7 +72,7 @@ export class CarritoDataService {
   setJuegoListReference(juegos: i_arcade[]) {
     this._juegoListReference = juegos;
 
-    // 5. CRUCIAL: Si la API cargó y ya teníamos juegos en el carrito guardados,
+    // si la API cargó y ya teníamos juegos en el carrito guardados,
     // restamos las cantidades correspondientes del catálogo para que el stock visual coincida.
     if (this._cartList.length > 0 && this._juegoListReference.length > 0) {
       this._cartList.forEach(cartItem => {
