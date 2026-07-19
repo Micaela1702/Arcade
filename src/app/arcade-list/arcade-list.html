@@ -1,16 +1,16 @@
-<div class="text-center mb-4">
-  <h2 class="fw-bold d-flex align-items-center justify-content-center gap-2 m-0" style="color: #212529; font-size: 1.4rem; letter-spacing: -0.3px;">
+<div class="arcade-seccion-header text-center mb-4">
+  <h2 class="arcade-titulo-premium d-flex align-items-center justify-content-center gap-2 m-0">
     <span>🎮</span> Nuestra Selección de Arcade
   </h2>
-  <p class="mb-0 mt-1" style="font-size: 0.72rem; font-style: italic; color: #6c757d; font-family: 'Segoe UI', Roboto, sans-serif; letter-spacing: 0.2px;">
+  <p class="arcade-subtitulo-muted mb-0 mt-1">
     Explorá los clásicos disponibles.
   </p>
 </div>
 
-<div class="catalog-container border rounded-3 overflow-hidden shadow-sm bg-white">
-  <table class="table table-borderless align-middle mb-0">
-    <thead style="background-color: #f0f2f5; color: #495057; font-size: 0.75rem; letter-spacing: 0.5px;" class="text-uppercase fw-bold">
-    <tr>
+<div class="arcade-tabla-wrapper overflow-hidden">
+  <table class="table arcade-tabla-personalizada align-middle mb-0">
+    <thead>
+    <tr class="text-uppercase fw-bold">
       <th>Imagen</th>
       <th>Nombre</th>
       <th>Género</th>
@@ -26,16 +26,16 @@
       <td>
         <img [src]="videojuego.image"
              [alt]="videojuego.name"
-             style="width: 85px; height: 50px; object-fit: cover; border-radius: 4px; box-shadow: 0 0 8px rgba(0,0,0,0.3);" />
+             class="arcade-game-img" />
       </td>
-      <td class="fw-bold">{{videojuego.name}}</td>
+      <td class="arcade-col-nombre">{{videojuego.name}}</td>
       <td>{{videojuego.type}}</td>
       <td>{{videojuego.price | currency:'USD':true:'1.2-2'}}</td>
       <td>
         @if (videojuego.stock > 0) {
-        <span class="text-success">{{ videojuego.stock }} disponibles</span>
+        <span class="arcade-badge-disponibles">{{ videojuego.stock }} disponibles</span>
         } @else {
-        <span class="badge badge-no-stock">Sin stock</span>
+        <span class="arcade-badge-sin-stock">Sin stock</span>
         }
       </td>
       <td>
@@ -43,7 +43,7 @@
         <!-- Contenedor alineado al centro horizontal con un gap (espaciado) de 2 -->
         <div class="d-flex align-items-center justify-content-center gap-2">
           <app-input-integer [(quantity)]="videojuego.quantity" [max]="videojuego.stock" (maxReached)="maxReached($event)"></app-input-integer>
-          <button class="btn btn-success btn-sm" (click)="addToCart(videojuego)">
+          <button class="arcade-btn-comprar btn-sm" (click)="addToCart(videojuego)">
             Comprar
           </button>
         </div>
@@ -52,7 +52,7 @@
     </tr>
     } @empty {
     <tr>
-      <td colspan="6" class="text-muted py-4">No hay juegos para mostrar en este momento.</td>
+      <td colspan="6" class="text-muted py-4 text-center">No hay juegos para mostrar en este momento.</td>
     </tr>
     }
     </tbody>

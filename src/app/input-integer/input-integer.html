@@ -1,12 +1,12 @@
-<div class="input-group input-group-sm custom-quantity-selector">
+<div class="custom-quantity-selector">
   <!-- Botón de Restar (-) -->
-  <button class="btn btn-outline-secondary" type="button" (click)="downQuantity()">
+  <button class="quantity-btn" type="button" (click)="downQuantity()">
     <i class="bi bi-dash-lg"></i>
   </button>
 
   <!-- Input del Número (Cantidad) -->
   <input type="number"
-         class="form-control text-center fw-bold"
+         class="quantity-input text-center fw-bold"
          [(ngModel)]="quantity"
          (keyup)="changeQuantity($event)"
          min="0"
@@ -14,7 +14,7 @@
          />
 
   <!-- Botón de Sumar (+) -->
-  <button class="btn btn-outline-secondary" type="button" (click)="upQuantity()">
+  <button class="quantity-btn" type="button" (click)="upQuantity()">
     <i class="bi bi-plus-lg"></i>
   </button>
 </div>

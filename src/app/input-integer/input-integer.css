@@ -1,44 +1,57 @@
-/* Contenedor del selector redondeado como píldora */
+
 .custom-quantity-selector {
-  width: 110px !important;
-  display: flex !important;
-  border-radius: 20px !important; /* Redondeado impecable */
+  width: 110px;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid #2a475e !important;
+  border: 1px solid #2a475e;
+  background-color: #101822;
 }
 
-/* Botones + y - de los costados */
-.custom-quantity-selector .btn {
-  background-color: #2a475e !important;
-  border: none !important;
-  color: #66c0f4 !important;
+
+.custom-quantity-selector .quantity-btn {
+  background-color: #2a475e;
+  border: none;
+  color: #66c0f4;
   font-weight: bold;
   padding: 0.35rem 0.65rem;
   font-size: 0.85rem;
+  cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.custom-quantity-selector .btn:hover {
-  background-color: #3a5a78 !important;
-  color: #ffffff !important;
+/* Hover de los botones */
+.custom-quantity-selector .quantity-btn:hover {
+  background-color: #3a5a78;
+  color: #ffffff;
 }
 
-/* Campo de texto numérico */
-.custom-quantity-selector .form-control {
-  background-color: #101822 !important;
-  border: none !important;
-  color: #ffffff !important;
+
+.custom-quantity-selector .quantity-input {
+  background-color: #101822;
+  border: none;
+  color: #ffffff;
   font-size: 0.9rem;
-  padding: 0 !important;
+  padding: 0;
   text-align: center;
+  width: 100%;
+  outline: none;
+  box-shadow: none;
 }
-.custom-quantity-selector input::-webkit-outer-spin-button,
-.custom-quantity-selector input::-webkit-inner-spin-button {
-  -webkit-appearance: none !important;
-  margin: 0 !important;
+
+/* Ocultar las flechas nativas en Chrome, Safari, Edge y Opera */
+.custom-quantity-selector .quantity-input::-webkit-outer-spin-button,
+.custom-quantity-selector .quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Ocultar las flechas nativas en Firefox */
-.custom-quantity-selector input[type=number] {
-  -moz-appearance: textfield !important;
+.custom-quantity-selector .quantity-input[type=number] {
+  -moz-appearance: textfield;
 }

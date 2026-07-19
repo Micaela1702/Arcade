@@ -1,5 +1,5 @@
 :host {
-  /* Reescribimos las variables de Bootstrap para este componente */
+
   --bs-navbar-color: rgba(255, 255, 255, 0.55);
   --bs-navbar-hover-color: rgba(255, 255, 255, 0.75);
   --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
@@ -8,7 +8,6 @@
   --bs-navbar-brand-hover-color: #fff;
 }
 
-/* Forzamos el fondo gris oscuro característico de la captura */
-.navbar {
-  background-color: #212529 !important;
+:host .navbar {
+  background-color: #212529;
 }

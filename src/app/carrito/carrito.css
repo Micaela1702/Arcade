@@ -1,57 +1,77 @@
-/* Contenedor principal del Carrito (La caja externa con sombra) */
+
 .cart-container {
-  background-color: #1b2838 !important; /* Azul oscuro Steam */
-  border: 1px solid #2a475e !important;  /* Borde azul sutil */
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
-  border-radius: 12px !important; /* Bordes suaves estilo tu referencia */
+  background-color: #1b2838; /* Azul oscuro Steam */
+  border: 1px solid #2a475e;  /* Borde azul sutil */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 20px;
 }
 
-/* Título */
-.cart-title {
-  color: #66c0f4 !important;
+.cart-container .cart-title {
+  color: #66c0f4;
   font-weight: bold;
 }
 
-/* Cada fila/ítem individual de juego dentro del carrito */
-.cart-item {
-  background-color: #101822 !important; /* Fondo ultra oscuro intermedio */
-  border: 1px solid #233c51 !important;
-  color: #ffffff !important;
+.cart-container .text-muted,
+.cart-container p,
+.cart-container span {
+  color: #c7d5e0;
+}
+
+.cart-container .cart-item {
+  background-color: #101822;
+  border: 1px solid #233c51;
+  color: #ffffff;
   transition: all 0.2s ease;
 }
 
-.cart-item:hover {
-  border-color: #66c0f4 !important; /* Resalta al pasar el mouse */
-  background-color: #14202e !important;
+
+.cart-container .cart-item:hover {
+  border-color: #66c0f4; /* Resalta al pasar el mouse */
+  background-color: #14202e;
 }
 
-/* El nombre del videojuego */
-.item-name {
-  color: #c7d5e0;
+
+.cart-container .item-name {
+  color: #ffffff;
   font-size: 0.95rem;
 }
 
-/* La pastilla (badge) verde que indica cuántos compraste */
-.item-badge {
-  background-color: #a3cf06 !important; /* Verde lima Steam de tu botón */
-  color: #171a21 !important; /* Texto oscuro interno */
+
+.cart-container .item-badge {
+  background-color: #a3cf06;
+  color: #171a21;
   font-weight: bold;
   font-size: 0.85rem;
-  padding: 0.45em 0.75em !important;
+  padding: 0.45em 0.75em;
+  border-radius: 6px;
 }
 
 /* Botón de remover (Tachito Minimalista) */
-.btn-remove {
+.cart-container .btn-remove {
   background: transparent;
-  color: #627382 !important; /* Gris azulado apagado y minimalista */
+  border: none;
+  color: #627382; /* Gris azulado apagado */
   font-size: 1.05rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* Efecto Hover: se ilumina con el celeste brillante gamer */
-.btn-remove:hover {
-  transform: scale(1.1); /* Crece solo un poquito para mantener la sutileza */
-  color: #66c0f4 !important; /* Celeste Steam */
+/* Efecto Hover del botón remover */
+.cart-container .btn-remove:hover {
+  transform: scale(1.1);
+  color: #66c0f4; /* Celeste Steam */
 }
 
+/* Quita los puntitos nativos de la lista y limpia márgenes */
+.cart-container .cart-list {
+  list-style: none;
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.cart-container .cart-list li {
+  list-style: none;
+  list-style-type: none;
+}
