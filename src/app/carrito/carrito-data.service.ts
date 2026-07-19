@@ -1,69 +1,92 @@
-import {Injectable} from '@angular/core';
-import {i_arcade } from '../arcade-list/i-arcade';
-import {Observable, BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { i_arcade } from '../arcade-list/i-arcade';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'})
-
+  providedIn: 'root'
+})
 export class CarritoDataService {
   private _cartList: i_arcade[] = [];
-  private _juegoListReference: i_arcade[] = []; // referencia al catálogo original
+  private _juegoListReference: i_arcade[] = [];
 
-    cartList: BehaviorSubject<i_arcade[]> = new BehaviorSubject(this._cartList);
-    constructor(){}
-    addToCart(juego: i_arcade) {
-      // Buscar la planta en la lista de referencia
-      let juegoInCatalog = this._juegoListReference.find(j => j.name === juego.name);
+  cartList: BehaviorSubject<i_arcade[]>;
 
-      if (!juegoInCatalog || juegoInCatalog.stock < juego.quantity) {
-        console.warn('No hay suficiente stock para agregar este juego');
-        return;
-      }
-     // Descontar stock
-      juegoInCatalog.stock -= juego.quantity;
+  constructor() {
+    // 1. Al iniciar el servicio, intentamos recuperar lo guardado en el navegador
+    const savedCart = localStorage.getItem('carrito_arcade');
+    if (savedCart) {
+      this._cartList = JSON.parse(savedCart);
+    }
+    // Inicializamos el BehaviorSubject con los datos recuperados (vacíos o con juegos)
+    this.cartList = new BehaviorSubject<i_arcade[]>(this._cartList);
+  }
 
-      // Agregar al carrito
-      let item = this._cartList.find((v1) => v1.name == juego.name);
-      if (!item) {
-        this._cartList.push({ ...juego });  // Clonamos el objeto
-      } else {
-        item.quantity += juego.quantity;
-      }
+  // 2. Función auxiliar para no repetir código al guardar
+  private saveCart() {
+    localStorage.setItem('carrito_arcade', JSON.stringify(this._cartList));
+  }
 
-      this.cartList.next(this._cartList);
+  addToCart(juego: i_arcade) {
+    let juegoInCatalog = this._juegoListReference.find(j => j.name === juego.name);
+
+    if (!juegoInCatalog || juegoInCatalog.stock < juego.quantity) {
+      console.warn('No hay suficiente stock para agregar este juego');
+      return;
     }
 
-      /**
-       * Elimina una cantidad específica del carrito.
-       * Retorna la cantidad realmente removida.
-       */
+    // Descontar stock
+    juegoInCatalog.stock -= juego.quantity;
 
-      removeQuantityFromCart(juegoName: string, quantity: number): number {
-        let item = this._cartList.find(j => j.name === juegoName);
-        if (!item) return 0;
+    // Agregar al carrito
+    let item = this._cartList.find((v1) => v1.name == juego.name);
+    if (!item) {
+      this._cartList.push({ ...juego });
+    } else {
+      item.quantity += juego.quantity;
+    }
 
-        const quantityToRemove = Math.min(quantity, item.quantity);
+    this.cartList.next(this._cartList);
 
-        item.quantity -= quantityToRemove;
+    // 3. Guardamos los cambios en el almacenamiento local
+    this.saveCart();
+  }
 
-        if (item.quantity <= 0) {
-          this._cartList = this._cartList.filter(j => j.name !== juegoName);
+  removeQuantityFromCart(juegoName: string, quantity: number): number {
+    let item = this._cartList.find(j => j.name === juegoName);
+    if (!item) return 0;
+
+    const quantityToRemove = Math.min(quantity, item.quantity);
+
+    item.quantity -= quantityToRemove;
+
+    if (item.quantity <= 0) {
+      this._cartList = this._cartList.filter(j => j.name !== juegoName);
+    }
+
+    this.cartList.next(this._cartList);
+
+    // 4. Guardamos los cambios también al remover elementos
+    this.saveCart();
+
+    return quantityToRemove;
+  }
+
+  setJuegoListReference(juegos: i_arcade[]) {
+    this._juegoListReference = juegos;
+
+    // 5. CRUCIAL: Si la API cargó y ya teníamos juegos en el carrito guardados,
+    // restamos las cantidades correspondientes del catálogo para que el stock visual coincida.
+    if (this._cartList.length > 0 && this._juegoListReference.length > 0) {
+      this._cartList.forEach(cartItem => {
+        let catalogItem = this._juegoListReference.find(j => j.name === cartItem.name);
+        if (catalogItem) {
+          catalogItem.stock -= cartItem.quantity;
         }
-
-        this.cartList.next(this._cartList);
-
-        return quantityToRemove;
-      }
-
-      /**
-       * Guarda una referencia al listado original de plantas (para actualizar stock).
-       */
-
-      setJuegoListReference(juegos: i_arcade[]) {
-        this._juegoListReference = juegos;
-      }
-
-      getFullJuegoList(): i_arcade[] {
-        return this._juegoListReference;
-      }
+      });
     }
+  }
+
+  getFullJuegoList(): i_arcade[] {
+    return this._juegoListReference;
+  }
+}

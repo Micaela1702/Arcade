@@ -1,0 +1,44 @@
+/* Contenedor del selector redondeado como píldora */
+.custom-quantity-selector {
+  width: 110px !important;
+  display: flex !important;
+  border-radius: 20px !important; /* Redondeado impecable */
+  overflow: hidden;
+  border: 1px solid #2a475e !important;
+}
+
+/* Botones + y - de los costados */
+.custom-quantity-selector .btn {
+  background-color: #2a475e !important;
+  border: none !important;
+  color: #66c0f4 !important;
+  font-weight: bold;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.custom-quantity-selector .btn:hover {
+  background-color: #3a5a78 !important;
+  color: #ffffff !important;
+}
+
+/* Campo de texto numérico */
+.custom-quantity-selector .form-control {
+  background-color: #101822 !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 0.9rem;
+  padding: 0 !important;
+  text-align: center;
+}
+.custom-quantity-selector input::-webkit-outer-spin-button,
+.custom-quantity-selector input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+/* Ocultar las flechas nativas en Firefox */
+.custom-quantity-selector input[type=number] {
+  -moz-appearance: textfield !important;
+}

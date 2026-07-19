@@ -1,0 +1,57 @@
+/* Contenedor principal del Carrito (La caja externa con sombra) */
+.cart-container {
+  background-color: #1b2838 !important; /* Azul oscuro Steam */
+  border: 1px solid #2a475e !important;  /* Borde azul sutil */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 12px !important; /* Bordes suaves estilo tu referencia */
+}
+
+/* Título */
+.cart-title {
+  color: #66c0f4 !important;
+  font-weight: bold;
+}
+
+/* Cada fila/ítem individual de juego dentro del carrito */
+.cart-item {
+  background-color: #101822 !important; /* Fondo ultra oscuro intermedio */
+  border: 1px solid #233c51 !important;
+  color: #ffffff !important;
+  transition: all 0.2s ease;
+}
+
+.cart-item:hover {
+  border-color: #66c0f4 !important; /* Resalta al pasar el mouse */
+  background-color: #14202e !important;
+}
+
+/* El nombre del videojuego */
+.item-name {
+  color: #c7d5e0;
+  font-size: 0.95rem;
+}
+
+/* La pastilla (badge) verde que indica cuántos compraste */
+.item-badge {
+  background-color: #a3cf06 !important; /* Verde lima Steam de tu botón */
+  color: #171a21 !important; /* Texto oscuro interno */
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 0.45em 0.75em !important;
+}
+
+/* Botón de remover (Tachito Minimalista) */
+.btn-remove {
+  background: transparent;
+  color: #627382 !important; /* Gris azulado apagado y minimalista */
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Efecto Hover: se ilumina con el celeste brillante gamer */
+.btn-remove:hover {
+  transform: scale(1.1); /* Crece solo un poquito para mantener la sutileza */
+  color: #66c0f4 !important; /* Celeste Steam */
+}
+

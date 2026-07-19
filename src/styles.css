@@ -1,1 +1,276 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================
+   ESTILO STEAM OSCURO - AJUSTADO
+   ========================================== */
+
+/* Forzar el fondo oscuro en toda la página */
+/* ==========================================
+   TÍTULO PRINCIPAL MINIMALISTA (ARCADE)
+   ========================================== */
+
+/* Apuntamos al contenedor del título para centrarlo y darle aire */
+.catalog-container-header,
+h2:has(+ p), /* Selector inteligente si es un h2 seguido del subtítulo */
+h2.text-center {
+  font-size: 2.2rem !important;        /* Más grandecito y con presencia */
+  font-weight: 300 !important;        /* Fuente fina/delgada (Ultra Minimalista) */
+  color: #ffffff !important;          /* Blanco puro y nítido */
+  letter-spacing: 2px !important;     /* Espaciado elegante entre letras */
+  text-transform: uppercase;          /* En mayúsculas queda súper premium */
+  text-shadow: 0 0 15px rgba(102, 192, 244, 0.3); /* Un destello celeste sutilísimo, estilo neón apagado */
+  margin-top: 25px !important;
+  margin-bottom: 5px !important;
+}
+
+/* El subtítulo ("Explorá los clásicos disponibles...") */
+h2 + p,
+.text-center + p,
+p.text-muted {
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  color: #627382 !important;          /* Gris azulado apagado muy fino */
+  letter-spacing: 0.5px !important;
+  margin-bottom: 30px !important;
+}
+
+body {
+  background-color: #171a21 !important;
+  color: #c7d5e0 !important;
+}
+
+/* El contenedor principal de la tabla */
+.catalog-container {
+  background-color: #1b2838 !important; /* Azul oscuro Steam */
+  border: 1px solid #2a475e !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Forzar que la tabla eche raíces sobre el fondo oscuro */
+.table {
+  background-color: #1b2838 !important;
+  color: #c7d5e0 !important;
+}
+
+/* Cabecera de la tabla - ¡TÍTULOS RECONTRA VISIBLES! */
+.table thead th {
+  background-color: #101822 !important; /* Fondo ultra oscuro contrastante */
+  color: #66c0f4 !important; /* Celeste bien brillante nítido */
+  font-weight: bold !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 1px;
+  padding: 15px 10px !important;
+  border-bottom: 2px solid #2a475e !important;
+}
+
+/* Filas individuales con fondo oscuro */
+.table tbody tr {
+  background-color: #1b2838 !important;
+  border-bottom: 1px solid rgba(42, 71, 94, 0.4) !important;
+}
+
+.table tbody tr:hover {
+  background-color: #233448 !important; /* Efecto hover sutil */
+}
+
+/* Texto de los nombres de los juegos dentro de las celdas */
+.table td {
+  padding: 20px 10px !important;
+  vertical-align: middle !important;
+  color: #ffffff !important; /* Texto blanco puro para los nombres */
+}
+
+/* Título oscuro en el carrito corregido (para que se lea bien en el header del carrito) */
+.cart-title {
+  color: #66c0f4 !important;
+  font-weight: bold !important;
+}
+
+/* ==========================================
+   BOTONES VERDES TRANSPARENTES Y REDONDOS
+   ========================================== */
+
+/* Botón Comprar en el catálogo */
+.btn-success {
+  background-color: rgba(163, 207, 6, 0.15) !important; /* Verde con 15% de opacidad (transparente) */
+  border: 1px solid rgba(163, 207, 6, 0.4) !important; /* Borde verde un poco más visible */
+  color: #a3cf06 !important; /* Texto en verde neón brillante */
+  font-weight: bold;
+  border-radius: 20px !important; /* Súper redondeado */
+  padding: 6px 20px !important;
+  font-size: 0.85rem;
+  transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(4px); /* Efecto vidrio esmerilado sutil */
+}
+
+.btn-success:hover {
+  background-color: rgba(163, 207, 6, 0.3) !important; /* Se vuelve un poco menos transparente al posarse */
+  border-color: #a3cf06 !important;
+  color: #ffffff !important; /* Texto pasa a blanco al hacer hover */
+  transform: translateY(-1px);
+}
+
+/* Pastilla/Badge de cantidad en el carrito (Verde transparente) */
+.item-badge {
+  background-color: rgba(163, 207, 6, 0.15) !important;
+  border: 1px solid rgba(163, 207, 6, 0.3) !important;
+  color: #a3cf06 !important;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 0.45em 0.85em !important;
+  border-radius: 20px !important; /* Totalmente redonda */
+}
+
+/* ==========================================
+   MATA-COMPORTAMIENTOS DE BOOTSTRAP (MUNDO OSCURO)
+   ========================================== */
+
+/* 1. ARREGLO DE TÍTULOS PRINCIPALES (Fuera y dentro de la tabla) */
+h1, h2, h3, h4, h5, h6,
+h2[style], h3[style],
+.cart-container h3,
+.cart-container h4 {
+  color: #ffffff !important; /* Forzamos a blanco puro para que resalte */
+}
+
+/* El subtítulo "Explorá los clásicos..." */
+p[style*="color"], .text-muted {
+  color: #8f98a0 !important;
+}
+
+/* 2. ARREGLO DEFINITIVO DEL FONDO BLANCO DE LA TABLA */
+.table,
+.table-responsive,
+.table tbody,
+.table tbody tr,
+.table tbody td {
+  --bs-table-bg: #1b2838 !important; /* Apaga el fondo blanco nativo de Bootstrap 5 */
+  background-color: #1b2838 !important;
+  color: #ffffff !important; /* Texto de los juegos en blanco para máxima lectura */
+}
+
+/* Títulos de las columnas (IMAGEN, NOMBRE, GÉNERO...) */
+.table thead th {
+  --bs-table-bg: #101822 !important; /* Fondo más oscuro para la cabecera */
+  background-color: #101822 !important;
+  color: #66c0f4 !important; /* Celeste brillante e hiper visible */
+  font-weight: bold !important;
+  font-size: 0.9rem !important;
+  border-bottom: 2px solid #2a475e !important;
+}
+
+/* Efecto hover sutil al pasar por encima de las filas oscuras */
+.table tbody tr:hover td {
+  --bs-table-bg: #233448 !important;
+  background-color: #233448 !important;
+}
+
+/* 3. BOTONES VERDES TRANSPARENTES Y REDONDOS (Mantener look pro) */
+.btn-success {
+  background-color: rgba(163, 207, 6, 0.12) !important; /* Transparente premium */
+  border: 1px solid rgba(163, 207, 6, 0.4) !important;
+  color: #a3cf06 !important; /* Texto verde neón */
+  font-weight: bold;
+  border-radius: 20px !important; /* Redondeado píldora */
+  padding: 6px 20px !important;
+  font-size: 0.85rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-success:hover {
+  background-color: rgba(163, 207, 6, 0.3) !important;
+  border-color: #a3cf06 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+/* Pastilla verde del carrito (Redonda y transparente) */
+.item-badge {
+  background-color: rgba(163, 207, 6, 0.15) !important;
+  border: 1px solid rgba(163, 207, 6, 0.3) !important;
+  color: #a3cf06 !important;
+  font-weight: bold;
+  border-radius: 20px !important;
+  padding: 0.45em 0.85em !important;
+}
+/* Badge de "Sin Stock" - Rojo Transparente Minimalista */
+.badge-no-stock {
+  background-color: rgba(229, 43, 43, 0.12) !important; /* Rojo con 12% de opacidad */
+  border: 1px solid rgba(229, 43, 43, 0.4) !important;  /* Borde rojo sutil */
+  color: #ff5c5c !important;                            /* Texto rojo neón brillante y nítido */
+  font-weight: bold !important;
+  border-radius: 20px !important;                       /* Redondeado tipo píldora igual al de Comprar */
+  padding: 6px 16px !important;                         /* Mismo tamaño y aire de celda */
+  font-size: 0.8rem !important;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   REDISEÑO EXCLUSIVO ABOUT MINIMALISTA
+   ========================================== */
+
+/* Contenedor principal externo */
+.about-card-container {
+  background-color: #1b2838 !important; /* Azul oscuro Steam */
+  border: 1px solid #2a475e !important;
+  max-width: 850px !important;
+  margin: 40px auto !important;
+  padding: 35px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Forzar la eliminación de fondos claros en CUALQUIER etiqueta interna */
+.about-card-container,
+.about-card-container * {
+  background-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Título principal en celeste nítido */
+.about-main-title {
+  color: #66c0f4 !important;
+  font-size: 1.8rem !important;
+  font-weight: 300 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  text-align: center !important;
+  margin-bottom: 30px !important;
+}
+
+/* Párrafos: Blanco puro y tipografía espaciada para lectura perfecta */
+.about-paragraph {
+  color: #ffffff !important; /* Blanco puro para máxima visualización */
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+  text-align: justify !important;
+  margin-bottom: 22px !important;
+}
+
+/* Destacados en verde lima */
+.about-strong {
+  color: #a3cf06 !important;
+  font-weight: bold !important;
+}
+
+/* Línea divisoria fina */
+.about-divider {
+  border-top: 1px solid rgba(102, 192, 244, 0.2) !important;
+  margin: 30px 0 !important;
+  height: 1px !important;
+  display: block !important;
+}
+
+/* Frase de cierre destacada con recuadro traslúcido propio */
+.about-quote {
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+  font-weight: bold !important;
+  text-align: center !important;
+  padding: 20px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(102, 192, 244, 0.15) !important;
+  background-color: rgba(102, 192, 244, 0.06) !important; /* Pequeño truco: acá sí permitimos un fondo, pero oscuro */
+}
