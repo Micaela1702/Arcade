@@ -1,28 +1,25 @@
 import { Routes } from '@angular/router';
-import { GameListComponent } from './game-list-component/game-list-component';
-import { LeaderBoardComponent } from './leader-board-component/leader-board-component';
+import { Juego } from './arcade-list/arcade-list.component';
 import { AboutComponent } from './about-component/about-component';
-
+import { DashboardComponent } from './dashboard-component/dashboard-component'
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'games',
+    redirectTo: 'Home',
     pathMatch: "full"
   },
-  {
-    path: 'games',
-    component: GameListComponent
-  },
-  {
-    path: 'leaderboard',
-    component: LeaderBoardComponent
-  },
+
+   {
+     path: 'Home',
+     component: DashboardComponent
+     },
+
   {
     path: 'about',
     component: AboutComponent
   },
   {
     path: '**',
-    redirectTo: 'games'
+    redirectTo: 'Home'
   }
 ];

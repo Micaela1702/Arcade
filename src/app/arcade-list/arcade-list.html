@@ -2,21 +2,55 @@
   <h2 class="fw-bold d-flex align-items-center justify-content-center gap-2 m-0" style="color: #212529; font-size: 1.4rem; letter-spacing: -0.3px;">
     <span>🕹️</span> Nuestra Selección de Arcade
   </h2>
-
   <p class="mb-0 mt-1" style="font-size: 0.72rem; font-style: italic; color: #6c757d; font-family: 'Segoe UI', Roboto, sans-serif; letter-spacing: 0.2px;">
     Explorá los clásicos disponibles.
   </p>
 </div>
 
 <div class="catalog-container border rounded-3 overflow-hidden shadow-sm bg-white">
-
-  <div class="row g-0 align-items-center text-center py-2 fw-bold text-uppercase" style="background-color: #f0f2f5; color: #495057; font-size: 0.75rem; letter-spacing: 0.5px;">
-    <div class="col-2">Imagen</div>
-    <div class="col-3">Nombre / Descripción</div>
-    <div class="col-2">Género</div>
-    <div class="col-1">Año</div>
-    <div class="col-1">Estado</div>
-    <div class="col-3">Cantidad</div>
-  </div>
-
+<table class="table align-middle text-center mb-0">
+  <thead style="background-color: #f0f2f5; color: #495057; font-size: 0.75rem; letter-spacing: 0.5px;" class="text-uppercase fw-bold">
+  <tr>
+    <th>Imagen</th>
+    <th>Nombre</th>
+    <th>Género</th>
+    <th>Precio</th>
+    <th>Estado</th>
+    <th>Acción</th>
+  </tr>
+  </thead>
+  <tbody>
+@for(videojuego of juego; track videojuego.name){
+<tr>
+  <td>
+    <img [src]="videojuego.image" [alt]="videojuego.name" style="width: 50px; height: auto; border-radius: 4px;" />
+  </td>
+  <td class="fw-bold">{{videojuego.name}}</td>
+  <td>{{videojuego.type}}</td>
+  <td>{{videojuego.price| currency:'USD':true:'1.2-2'}}</td>
+  <td>
+  @if (videojuego.stock > 0) {
+  <span class="text-success">{{ videojuego.stock }} disponibles</span>
+  } @else {
+  <span class="stock-badge">Sin stock</span>
+  }
+  </td>
+  <td>
+    @if (videojuego.stock) {
+    <div class="d-flex align-items-center justify-content-center">
+    <app-input-integer [(quantity)]="videojuego.quantity" [max]="videojuego.stock" (maxReached)="maxReached($event)"></app-input-integer>
+    <button class="btn btn-success btn-sm ms-2" (click)="addToCart(videojuego)">
+      <i class="bi bi-cart-plus"></i> Comprar
+    </button>
+    </div>
+}
+</td>
+</tr>
+} @empty {
+<tr>
+  <td colspan="6">No hay juegos para mostrar en este momento.</td>
+</tr>
+}
+</tbody>
+</table>
 </div>

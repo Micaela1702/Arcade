@@ -1,8 +1,8 @@
 export interface i_arcade {
-  nombre: string;
-  genero: string;
-  anio: number;
-  descripcion: string;
-  imagen: string;
-  disponible: boolean;
+  name: string;
+  type: string;
+  price: number;
+  stock: number;
+  image: string;
+  quantity: number;
 }

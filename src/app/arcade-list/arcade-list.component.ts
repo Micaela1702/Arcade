@@ -1,42 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common'; // chequear
 import { i_arcade } from './i-arcade';
-
+import { FormsModule } from '@angular/forms';
+import { arcadeDataService } from './arcade-data.service';
+import { CarritoDataService } from '../carrito/carrito-data.service';
+import { Router } from '@angular/router';
+import {InputIntegerComponent} from '../input-integer/input-integer';
 @Component({
   selector: 'app-arcade',
-  imports: [],
+  imports: [CommonModule, FormsModule, InputIntegerComponent],
   templateUrl: './arcade-list.html',
   styleUrl: './arcade.css',
 })
-export class Juego {
-  misJuegos: i_arcade[] = [ // utilizar mockapi
-    {
-      nombre: 'Pac-Man',
-      genero: 'Laberinto',
-      anio: 1980,
-      descripcion: 'Come todos los puntos y esquiva a los fantasmas Blinky, Pinky, Inky y Clyde.',
-      imagen: 'https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=200',
-      disponible: true
-    },
-    {
-      nombre: 'Space Invaders',
-      genero: 'Shoot \'em up',
-      anio: 1978,
-      descripcion: 'Defiende la Tierra de las oleadas de alienígenas que descienden del espacio.',
-      imagen: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=200',
-      disponible: true
-    },
-    {
-      nombre: 'Street Fighter II',
-      genero: 'Peleas',
-      anio: 1991,
-      descripcion: 'Elige a tu luchador mundial y vence a los rivales en un torneo clandestino.',
-      imagen: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=200',
-      disponible: false
-    }
-  ];
+export class Juego implements OnInit {
+  juego : i_arcade[] = [];
+  constructor (protected arcadeDataService: arcadeDataService, protected router: Router, protected CarritoDataService: CarritoDataService){}
+  ngOnInit(): void {
+     this.arcadeDataService.getAll().subscribe({next: (juego) => {this.juego = juego; console.log(juego);
+     this.CarritoDataService.setJuegoListReference(this.juego);
+           },
+           error: (err) => {
+             console.error('Error al cargar los juegos', err);
+             // muestra mensaje de error
+           }
+         });
+       }
 
-  jugarArcade(juego: i_arcade) {
-    alert(`¡Iniciando ${juego.nombre}!`);
-  }
-}
+ maxReached(m: string) {
+     alert(m);
+   }
+
+ addToCart(juego: i_arcade): void {
+     if (!juego.quantity || juego.quantity < 1) {
+       alert('Por favor, agregá una cantidad antes de comprar.');
+       return;
+     }
+
+     this.CarritoDataService.addToCart(juego);
+     juego.quantity = 0;
+   }
+ }
+
+
+
