@@ -16,7 +16,7 @@ export class Carrito {
   this.cartList$ = this.CarritoDataService.cartList.asObservable();
   }
  /**
-   * Elimina una unidad de una planta del carrito y actualiza el stock.
+   * Elimina una unidad de un juego del carrito y actualiza el stock.
    */
   removeOneFromCart(juegoName: string) {
     const removed = this.CarritoDataService.removeQuantityFromCart(juegoName, 1);
